@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "nome": "Açaí Tradicional",
+    "descricao": "Açaí puro batido na hora, cremoso e saboroso. Perfeito para quem quer experimentar o sabor autêntico do açaí amazônico.",
+    "preco": 12.50,
+    "imagemUrl": "https://via.placeholder.com/300x200/8E24AA/FFFFFF?text=Açaí+Tradicional",
+    "categoria": "Açaí",
+    "ingredientes": ["Açaí", "Guaraná em pó"]
+  },
+  {
+    "id": 2,
+    "nome": "Açaí com Banana",
+    "descricao": "Açaí cremoso com banana fresca e granola crocante. Uma combinação clássica e nutritiva para qualquer hora do dia.",
+    "preco": 15.00,
+    "imagemUrl": "https://via.placeholder.com/300x200/8E24AA/FFFFFF?text=Açaí+com+Banana",
+    "categoria": "Açaí",
+    "ingredientes": ["Açaí", "Banana", "Granola", "Mel"]
+  },
+  {
+    "id": 3,
+    "nome": "Açaí Completo",
+    "descricao": "Açaí com banana, morango, granola, leite condensado e chocolate. A opção mais completa e saborosa do nosso cardápio.",
+    "preco": 18.50,
+    "imagemUrl": "https://via.placeholder.com/300x200/8E24AA/FFFFFF?text=Açaí+Completo",
+    "categoria": "Açaí",
+    "ingredientes": ["Açaí", "Banana", "Morango", "Granola", "Leite condensado", "Chocolate granulado"]
+  },
+  {
+    "id": 4,
+    "nome": "Smoothie de Açaí",
+    "descricao": "Bebida refrescante de açaí com frutas vermelhas. Ideal para dias quentes e para quem busca uma opção mais líquida.",
+    "preco": 10.00,
+    "imagemUrl": "https://via.placeholder.com/300x200/E91E63/FFFFFF?text=Smoothie+Açaí",
+    "categoria": "Bebida",
+    "ingredientes": ["Açaí", "Morango", "Framboesa", "Água de coco"]
+  },
+  {
+    "id": 5,
+    "nome": "Taça Fitness",
+    "descricao": "Açaí com frutas, granola sem açúcar e pasta de amendoim. Perfeito para quem busca uma opção saudável e nutritiva.",
+    "preco": 16.00,
+    "imagemUrl": "https://via.placeholder.com/300x200/8E24AA/FFFFFF?text=Taça+Fitness",
+    "categoria": "Açaí",
+    "ingredientes": ["Açaí", "Banana", "Morango", "Granola sem açúcar", "Pasta de amendoim", "Chia"]
+  },
+  {
+    "id": 6,
+    "nome": "Açaí Kids",
+    "descricao": "Porção menor de açaí com banana e chocolate, especialmente pensada para as crianças. Doce na medida certa!",
+    "preco": 8.00,
+    "imagemUrl": "https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Açaí+Kids",
+    "categoria": "Açaí",
+    "ingredientes": ["Açaí", "Banana", "Chocolate granulado", "Leite condensado"]
+  },
+  {
+    "id": 7,
+    "nome": "Vitamina de Açaí",
+    "descricao": "Vitamina cremosa de açaí com leite e banana. Uma opção nutritiva e energética para começar bem o dia.",
+    "preco": 12.00,
+    "imagemUrl": "https://via.placeholder.com/300x200/9C27B0/FFFFFF?text=Vitamina+Açaí",
+    "categoria": "Bebida",
+    "ingredientes": ["Açaí", "Leite", "Banana", "Mel", "Aveia"]
+  },
+  {
+    "id": 8,
+    "nome": "Açaí Gourmet",
+    "descricao": "Açaí premium com frutas selecionadas, castanhas, granola artesanal e calda especial da casa.",
+    "preco": 22.00,
+    "imagemUrl": "https://via.placeholder.com/300x200/4A148C/FFFFFF?text=Açaí+Gourmet",
+    "categoria": "Açaí",
+    "ingredientes": ["Açaí premium", "Morango", "Kiwi", "Castanha do Pará", "Granola artesanal", "Calda de frutas vermelhas"]
+  },
+  {
+    "id": 9,
+    "nome": "Açaí Proteico",
+    "descricao": "Açaí enriquecido com whey protein, ideal para atletas e praticantes de atividade física.",
+    "preco": 19.00,
+    "imagemUrl": "https://via.placeholder.com/300x200/1B5E20/FFFFFF?text=Açaí+Proteico",
+    "categoria": "Açaí",
+    "ingredientes": ["Açaí", "Whey protein", "Banana", "Pasta de amendoim", "Granola", "Chia"]
+  },
+  {
+    "id": 10,
+    "nome": "Suco de Açaí",
+    "descricao": "Suco natural de açaí puro, sem adição de açúcar. Refrescante e cheio de antioxidantes.",
+    "preco": 7.50,
+    "imagemUrl": "https://via.placeholder.com/300x200/6A1B9A/FFFFFF?text=Suco+Açaí",
+    "categoria": "Bebida",
+    "ingredientes": ["Açaí", "Água", "Gelo"]
+  }
+]
