@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Açaiteria App - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #673AB7, #E91E63);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .filters {
+            padding: 16px;
+            background: #673AB7;
+            margin-bottom: 16px;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+        }
+
+        .chip {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chip.active {
+            background: #E91E63;
+        }
+
+        .products {
+            padding: 0 16px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .product-image {
+            height: 180px;
+            background: linear-gradient(135deg, #8E24AA, #E91E63);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .product-category {
+            background: rgba(233, 30, 99, 0.1);
+            color: #E91E63;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #673AB7;
+        }
+
+        .view-details {
+            background: #E91E63;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #673AB7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .demo-note {
+            background: #FFF3E0;
+            border: 1px solid #FFB74D;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 16px;
+            font-size: 14px;
+            color: #E65100;
+        }
+
+        .demo-note strong {
+            color: #BF360C;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍇 Açaiteria</h1>
+            <p>Bem-vindo à nossa Açaiteria!</p>
+        </div>
+
+        <div class="filters">
+            <div class="filter-chips">
+                <div class="chip active" onclick="filterProducts('Todos')">Todos</div>
+                <div class="chip" onclick="filterProducts('Açaí')">Açaí</div>
+                <div class="chip" onclick="filterProducts('Bebida')">Bebida</div>
+            </div>
+        </div>
+
+        <div class="demo-note">
+            <strong>📱 Demo do App Flutter</strong><br>
+            Esta é uma demonstração visual de como o app da açaiteria funcionará. O app real será desenvolvido em Flutter com todas as funcionalidades interativas.
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Carregando produtos...</p>
+        </div>
+
+        <div id="products" class="products" style="display: none;">
+            <!-- Os produtos serão carregados aqui -->
+        </div>
+    </div>
+
+    <script>
+        // Dados de exemplo (simulando a tabela do GitHub)
+        const produtos = [
+            {
+                id: 1,
+                nome: "Açaí Tradicional",
+                descricao: "Açaí puro batido na hora, cremoso e saboroso",
+                preco: 12.50,
+                categoria: "Açaí",
+                emoji: "🍇"
+            },
+            {
+                id: 2,
+                nome: "Açaí com Banana",
+                descricao: "Açaí cremoso com banana fresca e granola crocante",
+                preco: 15.00,
+                categoria: "Açaí",
+                emoji: "🍌"
+            },
+            {
+                id: 3,
+                nome: "Açaí Completo",
+                descricao: "Açaí com banana, morango, granola, leite condensado e chocolate",
+                preco: 18.50,
+                categoria: "Açaí",
+                emoji: "🍓"
+            },
+            {
+                id: 4,
+                nome: "Smoothie de Açaí",
+                descricao: "Bebida refrescante de açaí com frutas vermelhas",
+                preco: 10.00,
+                categoria: "Bebida",
+                emoji: "🥤"
+            },
+            {
+                id: 5,
+                nome: "Taça Fitness",
+                descricao: "Açaí com frutas, granola sem açúcar e pasta de amendoim",
+                preco: 16.00,
+                categoria: "Açaí",
+                emoji: "💪"
+            },
+            {
+                id: 6,
+                nome: "Vitamina de Açaí",
+                descricao: "Vitamina cremosa de açaí com leite e banana",
+                preco: 12.00,
+                categoria: "Bebida",
+                emoji: "🥛"
+            }
+        ];
+
+        let filtroAtual = 'Todos';
+
+        // Simula carregamento
+        setTimeout(() => {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('products').style.display = 'block';
+            renderProducts();
+        }, 2000);
+
+        function renderProducts() {
+            const container = document.getElementById('products');
+            const produtosFiltrados = filtroAtual === 'Todos' 
+                ? produtos 
+                : produtos.filter(p => p.categoria === filtroAtual);
+
+            container.innerHTML = produtosFiltrados.map(produto => `
+                <div class="product-card" onclick="showProductDetail(${produto.id})">
+                    <div class="product-image">
+                        ${produto.emoji}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <div class="product-name">${produto.nome}</div>
+                            <div class="product-category">${produto.categoria}</div>
+                        </div>
+                        <div class="product-description">${produto.descricao}</div>
+                        <div class="product-footer">
+                            <div class="product-price">R$ ${produto.preco.toFixed(2)}</div>
+                            <button class="view-details">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProducts(categoria) {
+            filtroAtual = categoria;
+            
+            // Atualiza chips visuais
+            document.querySelectorAll('.chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            renderProducts();
+        }
+
+        function showProductDetail(id) {
+            const produto = produtos.find(p => p.id === id);
+            alert(`📱 No app Flutter:\n\n${produto.nome}\n${produto.descricao}\nR$ ${produto.preco.toFixed(2)}\n\nAqui você poderia:\n• Ver ingredientes\n• Escolher quantidade\n• Adicionar observações\n• Adicionar ao pedido`);
+        }
+    </script>
+</body>
+</html>
